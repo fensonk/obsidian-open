@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Open in Obsidian</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:560px;margin:4rem auto;padding:0 1rem;line-height:1.6}a.btn{display:inline-block;padding:.6rem 1.2rem;border:1px solid #888;border-radius:8px;text-decoration:none;color:inherit}</style>
+</head>
+<body>
+<p id="msg">Opening Obsidian…</p>
+<p><a class="btn" id="go" href="#">Open in Obsidian</a></p>
+<script>
+(function(){
+  var p=new URLSearchParams(location.search);
+  var vault=p.get('v');
+  var file=p.get('f');
+  if(!file||!vault){document.getElementById('msg').textContent='Missing parameters (v, f).';document.getElementById('go').style.display='none';return;}
+  var url='obsidian://open?vault='+encodeURIComponent(vault)+'&file='+encodeURIComponent(file);
+  document.getElementById('go').href=url;
+  document.getElementById('msg').textContent='Opening: '+file.split('/').pop();
+  location.href=url;
+})();
+</script>
+</body>
+</html>
